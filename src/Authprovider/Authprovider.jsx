@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import App from '../App';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from '../Components/firebase/Firebase.config';
 
 export const AuthContext = createContext();
@@ -33,6 +33,25 @@ const logout = ()=>{
 const updateuser = (updateData) =>{
   return updateProfile(auth.currentUser, updateData);
 };
+// sign in with Google 
+
+const googlesignin = ()=>{
+const provider = new GoogleAuthProvider()
+return signInWithPopup(auth, provider)
+}
+// sign in with Github
+const githubsignin = ()=>{
+  const prov = new GithubAuthProvider()
+  return signInWithPopup(auth, prov)
+}
+
+// Passwordreset
+const resetpassword =(email)=>{
+  setloading(true)
+  return sendPasswordResetEmail(auth, email)
+}
+
+
 
 // user state observe 
 useEffect(()=>{
@@ -52,7 +71,10 @@ useEffect(()=>{
     Signin ,
     loading,
     setloading,
-    updateuser 
+    updateuser,
+    googlesignin,
+    githubsignin,
+    resetpassword
   };
 
   return (

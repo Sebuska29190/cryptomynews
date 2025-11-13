@@ -8,6 +8,7 @@ import Register from "../Components/User/Register";
 import Newsdetails from "../Components/Newscard/Newsdetails";
 import Privateroute from "../PrivateRoute/Privateroute";
 import Loading from "../Layout/Loading";
+import Forgetpasswor from "../Components/User/Forgetpasswor";
 
 
 const router = createBrowserRouter([
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
             {
                 path: '/auth/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/auth/passwordreset',
+                element: <Forgetpasswor></Forgetpasswor>
             }
         ]
 

@@ -41,6 +41,7 @@ This website allows users to read latest news by categories, view news details, 
 ## 🔑 Firebase Authentication
 
 ✔ Google Login  
+✔ Github Login  
 ✔ Email/Password Sign Up & Sign In  
 ✔ Auth Context using `onAuthStateChanged`  
 ✔ Redirect after Login  

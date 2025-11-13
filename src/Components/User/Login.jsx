@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext,  } from 'react';
 import { Link } from 'react-router';
 import { AuthContext } from '../../Authprovider/Authprovider';
 
 const Login = () => {
   const { Signin } = useContext(AuthContext)
   const handlesignin = (e) => {
+   
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
@@ -31,7 +32,7 @@ const Login = () => {
             {/* Password */}
             <label className="label">Password</label>
             <input name='password' type="password" className="input" placeholder="Password" />
-            <div><a className="link link-hover">Forgot password?</a></div>
+            <div><Link to='/auth/passwordreset' className="link link-hover">Forgot password?</Link></div>
             <button type="submit" className="btn btn-neutral mt-4">Login</button>
             <p className='font-semibold text-center py-3'>Dont’t Have An Account ?<Link className='text-secondary' to='/auth/register'>Register</Link></p>
           </fieldset>
