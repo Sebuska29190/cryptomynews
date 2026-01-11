@@ -13,6 +13,12 @@ messagingSenderId:import.meta.env.VITE_messagingSenderId,
 appId:import.meta.env.VITE_appId,
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+// Initialize Firebase only if config is available
+let app = null;
+if (firebaseConfig.apiKey && firebaseConfig.projectId) {
+  app = initializeApp(firebaseConfig);
+} else {
+  console.warn("Firebase config not found, Firebase not initialized");
+}
+
 export default app;

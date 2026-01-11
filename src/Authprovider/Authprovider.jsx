@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuth
 import app from '../Components/firebase/Firebase.config';
 
 export const AuthContext = createContext();
-const auth = getAuth(app)
+const auth = app ? getAuth(app) : null;
 
 
 
@@ -17,44 +17,56 @@ const Authprovider = ({ children }) => {
   // console.log(user, loading)
 // signup user
 const createuser= (email, password) =>{
+    if (!auth) return Promise.reject(new Error('Firebase not initialized'));
     setloading(true)
     return createUserWithEmailAndPassword(auth, email, password)
 }
-// signin user 
+// signin user
 const Signin = (email, password) =>{
+    if (!auth) return Promise.reject(new Error('Firebase not initialized'));
     setloading(true)
     return signInWithEmailAndPassword(auth, email, password)
 }
-// signout user 
+// signout user
 const logout = ()=>{
+    if (!auth) return;
     signOut(auth)
 }
-// user profile update 
+// user profile update
 const updateuser = (updateData) =>{
+  if (!auth || !auth.currentUser) return Promise.reject(new Error('No user or Firebase not initialized'));
   return updateProfile(auth.currentUser, updateData);
 };
-// sign in with Google 
+// sign in with Google
 
 const googlesignin = ()=>{
+if (!auth) return Promise.reject(new Error('Firebase not initialized'));
 const provider = new GoogleAuthProvider()
 return signInWithPopup(auth, provider)
 }
 // sign in with Github
 const githubsignin = ()=>{
+  if (!auth) return Promise.reject(new Error('Firebase not initialized'));
   const prov = new GithubAuthProvider()
   return signInWithPopup(auth, prov)
 }
 
 // Passwordreset
 const resetpassword =(email)=>{
+  if (!auth) return Promise.reject(new Error('Firebase not initialized'));
   setloading(true)
   return sendPasswordResetEmail(auth, email)
 }
 
 
 
-// user state observe 
+// user state observe
 useEffect(()=>{
+    if (!auth) {
+        setuser(null);
+        setloading(false);
+        return;
+    }
     const unsubscribe = onAuthStateChanged(auth, (currentuser)=>{
         setuser(currentuser)
         setloading(false)
