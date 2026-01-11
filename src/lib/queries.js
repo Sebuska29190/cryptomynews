@@ -85,7 +85,7 @@ const GET_ALL_CATEGORIES = `*[_type == "category"]{
 }`
 
 // Export functions
-export const getAllArticles = () => client.fetch(GET_ALL_ARTICLES)
+export const getAllArticles = () => { console.log('Fetching articles from Sanity'); return client.fetch(GET_ALL_ARTICLES) }
 
 export const getArticlesByCategory = (categoryId) => client.fetch(GET_ARTICLES_BY_CATEGORY, { categoryId })
 

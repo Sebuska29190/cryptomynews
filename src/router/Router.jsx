@@ -20,7 +20,7 @@ const router = createBrowserRouter([
             {
                 path: "",
                 element: <Homemain></Homemain>,
-                loader: async () => await getAllArticles()
+                loader: async () => { console.log('Loading all articles'); return await getAllArticles(); }
             },
             {
                 path: '/category/:id',
