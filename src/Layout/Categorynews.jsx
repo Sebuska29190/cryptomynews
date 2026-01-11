@@ -13,10 +13,10 @@ const Categorynews = () => {
             return;
         }
         else if(id == '1'){
-           const filternews = news.filter(newsf => newsf.others.is_today_pick == true)
-        setShownews(filternews) 
+           const filternews = news.filter(newsf => newsf.others.isTodayPick == true)
+        setShownews(filternews)
         } else{
-             const filternews = news.filter(newsf => newsf.category_id == id)
+             const filternews = news.filter(newsf => newsf.categoryId == parseInt(id))
         setShownews(filternews)
         }
        

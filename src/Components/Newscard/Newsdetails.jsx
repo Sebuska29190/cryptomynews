@@ -5,15 +5,9 @@ import { useLoaderData, useParams } from 'react-router';
 import NewsdetailsCard from './NewsdetailsCard';
 
 const Newsdetails = () => {
-    const data = useLoaderData();
+    const news = useLoaderData();
     const { id } = useParams()
-    // console.log(data, id)
-    const [news, setnews] = useState({})
-
-    useEffect(()=>{
-      const newsdata = data.find(newsData => newsData.id == id)
-      setnews(newsdata)
-    },[data, id])
+    // console.log(news, id)
     return (
         <div>
             <header className='py-4'>

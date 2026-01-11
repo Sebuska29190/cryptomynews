@@ -2,10 +2,10 @@ import { FaRegBookmark, FaShareAlt, FaEye, FaStar } from "react-icons/fa";
 import { Link } from "react-router";
 
 const Newscard = ({ niws }) => {
-  const { id, title, author, rating, thumbnail_url, details, total_view, } = niws;
+  const { id, title, author, rating, thumbnail, details, totalView, } = niws;
 
-  const date = author?.published_date
-    ? new Date(author.published_date).toLocaleDateString()
+  const date = author?.publishedDate
+    ? new Date(author.publishedDate).toLocaleDateString()
     : "Not Available";
 
   return (
@@ -14,9 +14,9 @@ const Newscard = ({ niws }) => {
       {/* Header */}
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center gap-3">
-          <img 
-            src={author?.img} 
-            alt={author?.name} 
+          <img
+            src={author?.image?.asset?.url}
+            alt={author?.name}
             className="w-12 h-12 rounded-full object-cover"
           />
           <div>
@@ -36,9 +36,9 @@ const Newscard = ({ niws }) => {
       <h2 className="font-bold text-xl mb-3">{title}</h2>
 
       {/* Image */}
-      <img 
-        src={thumbnail_url} 
-        alt="news thumbnail" 
+      <img
+        src={thumbnail?.asset?.url}
+        alt="news thumbnail"
         className="w-full rounded-lg mb-4"
       />
 
@@ -73,7 +73,7 @@ const Newscard = ({ niws }) => {
         {/* Views */}
         <div className="flex items-center gap-2">
           <FaEye />
-          <span className="font-medium">{total_view}</span>
+          <span className="font-medium">{totalView}</span>
         </div>
       </div>
 

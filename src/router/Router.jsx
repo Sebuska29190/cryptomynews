@@ -9,6 +9,7 @@ import Newsdetails from "../Components/Newscard/Newsdetails";
 import Privateroute from "../PrivateRoute/Privateroute";
 import Loading from "../Layout/Loading";
 import Forgetpasswor from "../Components/User/Forgetpasswor";
+import { getAllArticles, getArticlesByCategory, getArticleBySlug } from "../lib/queries";
 
 
 const router = createBrowserRouter([
@@ -18,12 +19,13 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "",
-                element: <Homemain></Homemain>
+                element: <Homemain></Homemain>,
+                loader: async () => await getAllArticles()
             },
             {
                 path: '/category/:id',
                 element: <Categorynews></Categorynews>,
-                loader: () => fetch('/news.json'),
+                loader: async ({ params }) => await getArticlesByCategory(params.id),
                 // for optimization
                 hydrateFallbackElement: <Loading></Loading>
             },
@@ -53,10 +55,10 @@ const router = createBrowserRouter([
     },
     {
         path: '/newsdetails/:id',
-        element: <Privateroute> 
-            <Newsdetails></Newsdetails> 
+        element: <Privateroute>
+            <Newsdetails></Newsdetails>
         </Privateroute>,
-        loader: () => fetch('/news.json'),
+        loader: async ({ params }) => await getArticleBySlug(params.id),
         // for optimization
         hydrateFallbackElement: <Loading></Loading>
     }
