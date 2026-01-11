@@ -5,20 +5,20 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-apiKey:import.meta.env.VITE_apiKey,
-authDomain:import.meta.env.VITE_authDomain,
-projectId:import.meta.env.VITE_projectId,
-storageBucket:import.meta.env.VITE_storageBucket,
-messagingSenderId:import.meta.env.VITE_messagingSenderId,
-appId:import.meta.env.VITE_appId,
+  apiKey: "AIzaSyBtTsIpDr-vPCMQYGKBzDCeEIYlFa1Wiz0",
+  authDomain: "cryptopulsenow.firebaseapp.com",
+  projectId: "cryptopulsenow",
+  storageBucket: "cryptopulsenow.firebasestorage.app",
+  messagingSenderId: "551826746272",
+  appId: "1:551826746272:web:f4348a1dea9ef26ba692c5"
 };
 
-// Initialize Firebase only if config is available
+// Initialize Firebase
 let app = null;
-if (firebaseConfig.apiKey && firebaseConfig.projectId) {
+try {
   app = initializeApp(firebaseConfig);
-} else {
-  console.warn("Firebase config not found, Firebase not initialized");
+} catch (error) {
+  console.error('Firebase initialization failed:', error);
 }
 
 export default app;

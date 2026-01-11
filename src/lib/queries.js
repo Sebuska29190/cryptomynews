@@ -85,11 +85,35 @@ const GET_ALL_CATEGORIES = `*[_type == "category"]{
 }`
 
 // Export functions
-export const getAllArticles = () => { console.log('Fetching articles from Sanity'); return client.fetch(GET_ALL_ARTICLES) }
+export const getAllArticles = () => {
+  if (!client) {
+    console.warn('Sanity client not available');
+    return Promise.resolve([]);
+  }
+  console.log('Fetching articles from Sanity');
+  return client.fetch(GET_ALL_ARTICLES);
+};
 
-export const getArticlesByCategory = (categoryId) => client.fetch(GET_ARTICLES_BY_CATEGORY, { categoryId })
+export const getArticlesByCategory = (categoryId) => {
+  if (!client) {
+    console.warn('Sanity client not available');
+    return Promise.resolve([]);
+  }
+  return client.fetch(GET_ARTICLES_BY_CATEGORY, { categoryId });
+};
 
-export const getArticleBySlug = (slug) => client.fetch(GET_ARTICLE_BY_SLUG, { slug })
+export const getArticleBySlug = (slug) => {
+  if (!client) {
+    console.warn('Sanity client not available');
+    return Promise.resolve(null);
+  }
+  return client.fetch(GET_ARTICLE_BY_SLUG, { slug });
+};
 
-
-export const getAllCategories = () => client.fetch(GET_ALL_CATEGORIES)
+export const getAllCategories = () => {
+  if (!client) {
+    console.warn('Sanity client not available');
+    return Promise.resolve([]);
+  }
+  return client.fetch(GET_ALL_CATEGORIES);
+};
