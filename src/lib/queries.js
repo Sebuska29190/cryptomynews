@@ -91,4 +91,5 @@ export const getArticlesByCategory = (categoryId) => client.fetch(GET_ARTICLES_B
 
 export const getArticleBySlug = (slug) => client.fetch(GET_ARTICLE_BY_SLUG, { slug })
 
+
 export const getAllCategories = () => client.fetch(GET_ALL_CATEGORIES)
