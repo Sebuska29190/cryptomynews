@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter } from "react-router-dom";
 import Home from "../Layout/Home";
 import Homemain from "../Layout/Homemain";
 import Categorynews from "../Layout/Categorynews";
@@ -19,13 +19,11 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "",
-                element: <Homemain></Homemain>,
-                loader: async () => { console.log('Loading all articles'); return await getAllArticles(); }
+                element: <Homemain></Homemain>
             },
             {
                 path: '/category/:id',
                 element: <Categorynews></Categorynews>,
-                loader: async ({ params }) => await getArticlesByCategory(params.id),
                 // for optimization
                 hydrateFallbackElement: <Loading></Loading>
             },
